@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Power Monitoring System</title>
+</head>
+<body>
+<h2 style="text-align: center">Power Monitoring System Data</h2>
+<br/>
+<form method = post th:action="@{/sortTable}">
+<div style="margin-left: 32%;display: inline-block;">
+    <label for="start-datetime">Choose start datetime:</label>
+    <br/>
+    <input type="datetime-local" id="start-datetime"
+           name="start-datetime">
+</div>
+<div style="display: inline-block; margin-left: 5%;">
+    <label for="end-datetime"> Choose end datetime :</label>
+    <br/>
+    <input type="datetime-local" id="end-datetime"
+           name="end-datetime">
+    <button type="submit">Apply!</button>
+</div>
+<br/><br/><br/>
+</form>
+<div class ="container" align="center">
+    <table class = "table table-striped">
+        <thead>
+        <tr>
+            <th>Sensor ID</th>
+            <th>DateTime</th>
+            <th>I1</th>
+            <th>I2</th>
+            <th>I3</th>
+            <th>U1</th>
+            <th>U2</th>
+            <th>U3</th>
+            <th>P</th>
+            <th>Q</th>
+            <th>F</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="data : ${tableData}">
+            <td th:text="${data.sensorID}">Sensor ID</td>
+            <td th:text="${data.datetime}">Datetime</td>
+            <td th:text="${data.I1}">I1</td>
+            <td th:text="${data.I2}">I2</td>
+            <td th:text="${data.I3}">I3</td>
+            <td th:text="${data.U1}">U1</td>
+            <td th:text="${data.U2}">U2</td>
+            <td th:text="${data.U3}">U3</td>
+            <td th:text="${data.P}">P</td>
+            <td th:text="${data.Q}">Q</td>
+            <td th:text="${data.F}">F</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
