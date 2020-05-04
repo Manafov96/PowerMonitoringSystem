@@ -8,56 +8,123 @@
         <label for="start-datetime">Choose start datetime:</label>
         <br/>
         <input type="datetime-local" id="start-datetime"
-               name="start-datetime" required>
+               name="start-datetime" th:value="${start}" required>
     </div>
     <div style="display: inline-block; margin-left: 5%;">
         <label for="end-datetime"> Choose end datetime :</label>
         <br/>
         <input type="datetime-local" id="end-datetime"
-               name="end-datetime" required>
+               name="end-datetime" th:value="${end}" required>
         <button type="submit">Apply!</button>
     </div>
     <br/><br/><br/>
 </form>
+<div id="I1">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.I1}">
+</div>
+<div id="I2">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.I2}">
+</div>
+<div id="I3">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.I3}">
+</div>
+<div id="U1">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.U1}">
+</div>
+<div id="U2">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.U2}">
+</div>
+<div id="U3">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.U3}">
+</div>
+<div id="P">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.P}">
+</div>
+<div id="Q">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.Q}">
+</div>
+<div id="F">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.F}">
+</div>
 <head>
-    <script>
-window.onload = function () {
+    <script th:inline="javascript">
+    /*<![CDATA[*/
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	theme: "light2",
-	title:{
-		text: "Simple Line Chart"
-	},
-	axisY:{
-		includeZero: false
-	},
-	data: [{
-		type: "line",
-      	indexLabelFontSize: 16,
-		dataPoints: [
-			{ y: 450 },
-			{ y: 414},
-			{ y: 520, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
-			{ y: 460 },
-			{ y: 450 },
-			{ y: 500 },
-			{ y: 480 },
-			{ y: 480 },
-			{ y: 410 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-			{ y: 500 },
-			{ y: 480 },
-			{ y: 510 }
-		]
-	}]
-});
-chart.render();
+  window.onload = function () {
 
-}
-</script>
-</head>
+         let data = [];
+        let value1 = document.getElementById('I1');
+        let I1 = Array.from(value1.children).map(x => x.value);
+        data.push(I1);
+
+        let value2 = document.getElementById('I2');
+        let I2 = Array.from(value2.children).map(x => x.value);
+        data.push(I2);
+
+        let value3 = document.getElementById('I3');
+        let I3 = Array.from(value3.children).map(x => x.value);
+        data.push(I3);
+
+        let value4 = document.getElementById('U1');
+        let U1 = Array.from(value4.children).map(x => x.value);
+        data.push(U1);
+
+        let value5 = document.getElementById('U2');
+        let U2 = Array.from(value5.children).map(x => x.value);
+        data.push(U2);
+
+        let value6 = document.getElementById('U3');
+        let U3 = Array.from(value6.children).map(x => x.value);
+        data.push(U3);
+
+        let value7 = document.getElementById('P');
+        let P = Array.from(value7.children).map(x => x.value);
+        data.push(P);
+
+        let value8 = document.getElementById('Q');
+        let Q = Array.from(value8.children).map(x => x.value);
+        data.push(Q);
+
+        let value9 = document.getElementById('F');
+        let F = Array.from(value9.children).map(x => x.value);
+        data.push(F);
+
+
+    console.log(data);
+    let finalResults = [];
+
+      data.map(x => {
+        let arrayWithObj = [];
+        x.map(y => {
+          let obj= {};
+          obj['y'] = +y;
+          arrayWithObj.push(obj);
+        })
+
+        let obj1 = {};
+        obj1['type'] = 'line';
+<!--        obj1['indexLabelFontSize'] = 16;-->
+        obj1['dataPoints'] = arrayWithObj;
+
+        finalResults.push(obj1);
+      })
+     console.log(finalResults);
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      title:{
+      text: "Multi-Series Line Chart"
+      },
+      data: finalResults,
+
+    });
+
+    chart.render();
+  }
+  /*]]>*/
+  </script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script></head>
 <body>
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<div id="chartContainer" style="height: 300px; width: 100%;">
+</div>
 </body>
 </html>

@@ -46,7 +46,8 @@ public class VisualisationController {
          List<com.PowerMonitoringSystem.models.ElectricEnergy> tableData =
                 electricEnergy.findAllByDateBetween(tFrom, tTo);
          model.addAttribute("tableData", tableData);
-
+         model.addAttribute("start", fromDate);
+         model.addAttribute("end", toDate);
 
         return "tableData.html";
     }
@@ -62,7 +63,8 @@ public class VisualisationController {
         List<com.PowerMonitoringSystem.models.ElectricEnergy> ChartData =
                 electricEnergy.findAllByDateBetween(tFrom, tTo);
         model.addAttribute("dataPointsList", ChartData);
-
+        model.addAttribute("start", fromDate);
+        model.addAttribute("end", toDate);
 
         return "chart.html";
     }
