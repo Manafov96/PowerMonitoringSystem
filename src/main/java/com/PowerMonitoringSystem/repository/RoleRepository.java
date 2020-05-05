@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.PowerMonitoringSystem.models.Roles;
 
 @Repository("roleRepository")
-public interface RoleRespository extends JpaRepository<Roles, Integer> {
+public interface RoleRepository extends JpaRepository<Roles, Integer> {
 
 	Roles findByRole(String role);
+
 }

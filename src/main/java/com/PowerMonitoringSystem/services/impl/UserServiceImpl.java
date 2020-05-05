@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.PowerMonitoringSystem.models.Roles;
 import com.PowerMonitoringSystem.models.Users;
-import com.PowerMonitoringSystem.repository.RoleRespository;
+import com.PowerMonitoringSystem.repository.RoleRepository;
 import com.PowerMonitoringSystem.repository.UserRepository;
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private RoleRespository roleRespository;
+	private RoleRepository roleRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 	public void saveUser(Users user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		user.setActive(1);
-		Roles userRole = roleRespository.findByRole("ADMIN");
+		Roles userRole = roleRepository.findByRole("ADMIN");
 		user.setRoles(new HashSet<Roles>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}

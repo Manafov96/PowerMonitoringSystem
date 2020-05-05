@@ -13,4 +13,5 @@ public interface DateUtil {
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone(UTC_TIMEZONE_NAME));
         return simpleDateFormat;
     }
+
 }

@@ -7,4 +7,5 @@ public interface ElectricEnergy {
 
     Iterable<com.PowerMonitoringSystem.models.ElectricEnergy> findAll();
     List<com.PowerMonitoringSystem.models.ElectricEnergy> findAllByDateBetween(Timestamp from, Timestamp to);
+
 }

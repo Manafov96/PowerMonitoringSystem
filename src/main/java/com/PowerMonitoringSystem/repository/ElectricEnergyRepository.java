@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository("ElectricEnergyRepository")
 public interface ElectricEnergyRepository extends CrudRepository<ElectricEnergy, Long> {
+
     @Query(value = "select * from electric_energy EE where EE.datetime between :from and :to", nativeQuery = true)
     List<ElectricEnergy> findAllByDateBetween(Timestamp from, Timestamp to);
+
 }

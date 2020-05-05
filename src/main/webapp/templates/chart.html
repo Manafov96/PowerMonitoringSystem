@@ -46,83 +46,124 @@
 <div id="F">
     <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.F}">
 </div>
+<div id="date">
+    <input th:each="data : ${dataPointsList}" type="hidden" th:value="${data.datetime}">
+</div>
 <head>
     <script th:inline="javascript">
     /*<![CDATA[*/
 
   window.onload = function () {
 
-        let data = [];
         let value1 = document.getElementById('I1');
         let I1 = Array.from(value1.children).map(x => x.value);
-        data.push(I1);
+
 
         let value2 = document.getElementById('I2');
         let I2 = Array.from(value2.children).map(x => x.value);
-        data.push(I2);
+
 
         let value3 = document.getElementById('I3');
         let I3 = Array.from(value3.children).map(x => x.value);
-        data.push(I3);
+
 
         let value4 = document.getElementById('U1');
         let U1 = Array.from(value4.children).map(x => x.value);
-        data.push(U1);
+
 
         let value5 = document.getElementById('U2');
         let U2 = Array.from(value5.children).map(x => x.value);
-        data.push(U2);
+
 
         let value6 = document.getElementById('U3');
         let U3 = Array.from(value6.children).map(x => x.value);
-        data.push(U3);
+
 
         let value7 = document.getElementById('P');
         let P = Array.from(value7.children).map(x => x.value);
-        data.push(P);
+
 
         let value8 = document.getElementById('Q');
         let Q = Array.from(value8.children).map(x => x.value);
-        data.push(Q);
+
 
         let value9 = document.getElementById('F');
         let F = Array.from(value9.children).map(x => x.value);
-        data.push(F);
 
 
-      let finalResults = [];
+        let value10 = document.getElementById('date');
+        let DateTime = Array.from(value10.children).map(x => x.value);
 
-      data.map(x => {
-        let arrayWithObj = [];
-        x.map(y => {
-          let obj= {};
-          obj['y'] = +y;
-          arrayWithObj.push(obj);
-        })
+        var chart = new Chart("chartContainer",
+        {
+          type: "line",
+          animationEnabled: true,
+          theme: "light2",
+          title:{
+          text: "Multi-Series Line Chart"
+          },
+          data: {
+            datasets: [
+                {
+                    data: I1,
+                    borderColor: 'red',
+                    label: 'I1'
+                },
+                {
+                    data: I2,
+                    borderColor: 'yellow',
+                    label: 'I2'
+                },
+                {
+                    data: I3,
+                    borderColor: 'blue',
+                    label: 'I3'
+                },
+                {
+                    data: U1,
+                    borderColor: 'gray',
+                    label: 'U1'
+                },
+                {
+                    data: U2,
+                    borderColor: 'green',
+                    label: 'U2'
+                },
+                {
+                    data: U3,
+                    borderColor: 'orange',
+                    label: 'U3'
+                },
+                {
+                    data: P,
+                    borderColor: 'darkblue',
+                    label: 'P'
+                },
+                {
+                    data: Q,
+                    borderColor: 'skyblue',
+                    label: 'Q'
+                },
+                {
+                    data: F,
+                    borderColor: 'purple',
+                    label: 'F'
+                }
+            ],
+            labels: DateTime
+          }
 
-        let obj1 = {};
-        obj1['type'] = 'line';
-        obj1['indexLabelFontSize'] = 16;
-        obj1['dataPoints'] = arrayWithObj;
+        });
 
-        finalResults.push(obj1);
-      })
-    var chart = new CanvasJS.Chart("chartContainer",
-    {
-      title:{
-      text: "Multi-Series Line Chart"
-      },
-      data: finalResults,
-
-    });
-
-    chart.render();
-  }
+        chart.render();
+      }
   /*]]>*/
   </script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script></head>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+</head>
 <body>
-<div id="chartContainer" style="height: 300px; width: 100%;">
-</div>
+<canvas id="chartContainer" style="height: 300px; width: 100%;">
+</canvas>
 </body>
 </html>
