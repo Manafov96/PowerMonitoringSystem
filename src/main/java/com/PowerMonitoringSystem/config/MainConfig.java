@@ -1,4 +1,4 @@
-package com.PowerMonitoringSystem.security;
+package com.PowerMonitoringSystem.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,8 +17,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @Configuration
 @EnableWebMvc
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages = "com.PowerMonitoringSystem")
-public class MainConfig implements WebMvcConfigurer {
+@ComponentScan(basePackages = "com.PowerMonitoringSystem")public class MainConfig implements WebMvcConfigurer {
 
     @Autowired
     WebApplicationContext webApplicationContext;

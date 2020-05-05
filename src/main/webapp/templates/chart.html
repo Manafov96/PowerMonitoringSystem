@@ -52,7 +52,7 @@
 
   window.onload = function () {
 
-         let data = [];
+        let data = [];
         let value1 = document.getElementById('I1');
         let I1 = Array.from(value1.children).map(x => x.value);
         data.push(I1);
@@ -90,8 +90,8 @@
         data.push(F);
 
 
-    console.log(data);
-    let finalResults = [];
+      let finalResults = [];
+      let labels = [I1, I2, I3, U1, U2, U3, P, Q, F];
 
       data.map(x => {
         let arrayWithObj = [];
@@ -103,12 +103,11 @@
 
         let obj1 = {};
         obj1['type'] = 'line';
-<!--        obj1['indexLabelFontSize'] = 16;-->
+        obj1['indexLabelFontSize'] = 16;
         obj1['dataPoints'] = arrayWithObj;
 
         finalResults.push(obj1);
       })
-     console.log(finalResults);
     var chart = new CanvasJS.Chart("chartContainer",
     {
       title:{
