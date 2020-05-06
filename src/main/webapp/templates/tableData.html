@@ -6,6 +6,80 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script th:inline="javascript">
+
+        $(document).ready(function()
+        {
+                let I1 = Array.from(document.querySelectorAll('.I1'));
+                let I2 = Array.from(document.querySelectorAll('.I2'));
+                let I3 = Array.from(document.querySelectorAll('.I3'));
+                let U1 = Array.from(document.querySelectorAll('.U1'));
+                let U2 = Array.from(document.querySelectorAll('.U2'));
+                let U3 = Array.from(document.querySelectorAll('.U3'));
+                let P = Array.from(document.querySelectorAll('.P'));
+                let Q = Array.from(document.querySelectorAll('.Q'));
+                let F = Array.from(document.querySelectorAll('.F'));
+
+
+                let i1 = 0;
+                I1.map(x => {
+                    i1 += +x.textContent;
+                });
+
+                let i2 = 0;
+                I2.map(x => {
+                    i2 += +x.textContent;
+                });
+
+                let i3 = 0;
+                I3.map(x => {
+                    i3 += +x.textContent;
+                });
+
+                let u1 = 0;
+                U1.map(x => {
+                    u1 += +x.textContent;
+                });
+
+                let u2 = 0;
+                U2.map(x => {
+                    u2 += +x.textContent;
+                });
+
+                let u3 = 0;
+                U3.map(x => {
+                    u3 += +x.textContent;
+                });
+
+                let p = 0;
+                P.map(x => {
+                    p += +x.textContent;
+                });
+
+                let q = 0;
+                Q.map(x => {
+                    q += +x.textContent;
+                });
+
+                let f = 0;
+                F.map(x => {
+                    f += +x.textContent;
+                });
+
+                document.getElementById('totalI1').textContent = i1.toFixed(1);
+                document.getElementById('totalI2').textContent = i2.toFixed(1);
+                document.getElementById('totalI3').textContent = i3.toFixed(1);
+
+                document.getElementById('totalU1').textContent = u1.toFixed(1);
+                document.getElementById('totalU2').textContent = u2.toFixed(1);
+                document.getElementById('totalU3').textContent = u3.toFixed(1);
+
+                document.getElementById('totalP').textContent = p.toFixed(1);
+                document.getElementById('totalQ').textContent = q.toFixed(1);
+                document.getElementById('totalF').textContent = f.toFixed(1);
+
+        });
+    </script>
     <title>Power Monitoring System</title>
 </head>
 <body>
@@ -48,15 +122,27 @@
         <tr th:each="data : ${tableData}">
             <td th:text="${data.sensorID}">Sensor ID</td>
             <td th:text="${data.datetime}">Datetime</td>
-            <td th:text="${data.I1}">I1</td>
-            <td th:text="${data.I2}">I2</td>
-            <td th:text="${data.I3}">I3</td>
-            <td th:text="${data.U1}">U1</td>
-            <td th:text="${data.U2}">U2</td>
-            <td th:text="${data.U3}">U3</td>
-            <td th:text="${data.P}">P</td>
-            <td th:text="${data.Q}">Q</td>
-            <td th:text="${data.F}">F</td>
+            <td class="I1" th:text="${data.I1}">I1</td>
+            <td class="I2" th:text="${data.I2}">I2</td>
+            <td class="I3" th:text="${data.I3}">I3</td>
+            <td class="U1" th:text="${data.U1}">U1</td>
+            <td class="U2" th:text="${data.U2}">U2</td>
+            <td class="U3" th:text="${data.U3}">U3</td>
+            <td class="P" th:text="${data.P}">P</td>
+            <td class="Q" th:text="${data.Q}">Q</td>
+            <td class="F" th:text="${data.F}">F</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right;"><strong>Total:</strong></td>
+            <td colspan="1"><strong id="totalI1"></strong></td>
+            <td colspan="1"><strong id="totalI2"></strong></td>
+            <td colspan="1"><strong id="totalI3"></strong></td>
+            <td colspan="1"><strong id="totalU1"></strong></td>
+            <td colspan="1"><strong id="totalU2"></strong></td>
+            <td colspan="1"><strong id="totalU3"></strong></td>
+            <td colspan="1"><strong id="totalP"></strong></td>
+            <td colspan="1"><strong id="totalQ"></strong></td>
+            <td colspan="1"><strong id="totalF"></strong></td>
         </tr>
         </tbody>
     </table>
